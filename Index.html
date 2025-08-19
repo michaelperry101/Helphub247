@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelpHub24/7</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex flex-col items-center justify-center min-h-screen p-6">
+    <!-- Header -->
+    <h1 class="text-4xl font-bold mb-4 text-blue-600">HelpHub24/7</h1>
+    <p class="mb-6 text-gray-700 text-center max-w-md">
+      Your personal AI-powered helpline, available 24/7. 
+      Meet <strong>Carys</strong>, your Conversational Assistant for Responsive Yielding Solutions.
+    </p>
+
+    <!-- Subscribe Button -->
+    <button
+      onclick="subscribe()"
+      class="mb-6 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg"
+    >
+      Subscribe (£9.99/month)
+    </button>
+
+    <!-- Chat Box -->
+    <div class="w-full max-w-md bg-white p-4 rounded-xl shadow">
+      <div id="chatBox" class="h-64 overflow-y-scroll border p-2 mb-2 rounded">
+        <p class="text-gray-500">Carys is ready to chat. Ask me anything!</p>
+      </div>
+      <div class="flex">
+        <input
+          id="userInput"
+          placeholder="Ask Carys..."
+          class="flex-1 border rounded-l-lg px-3 py-2"
+        />
+        <button
+          onclick="sendMessage()"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-r-lg"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+
+    function appendMessage(role, text) {
+      const p = document.createElement("p");
+      p.className =
+        role === "user"
+          ? "text-right text-blue-600"
+          : "text-left text-gray-700";
+      p.innerHTML = `<strong>${
+        role === "user" ? "You" : "Carys"
+      }:</strong> ${text}`;
+      chatBox.appendChild(p);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (!message) return;
+      appendMessage("user", message);
+
+      // Mock AI reply (replace with real AI API later)
+      setTimeout(() => {
+        appendMessage("carys", "I'm here to help! (AI reply placeholder)");
+      }, 1000);
+
+      input.value = "";
+    }
+
+    function subscribe() {
+      alert("Subscription system coming soon (£9.99/month).");
+    }
+  </script>
+</body>
+</html>
